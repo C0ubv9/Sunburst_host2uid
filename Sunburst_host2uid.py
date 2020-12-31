@@ -4,7 +4,7 @@
 
 # 	"05q2sp0v4b5ramdf71l7.appsync-api.eu-west-1.avsvmcloud.com"
 
-# Many security reasearchers have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
+# Many security reasearchers, such as the RedDrip Team and others, have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
 
 # 1. The full internal domain names of infected victim organizations, such as “victim.com”
 # 2. The unique ID of infected host within the victim organizations
