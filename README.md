@@ -8,7 +8,7 @@ Sunburst victime host sent DNS query to known C2 servers, such as the one below:
 
 	"05q2sp0v4b5ramdf71l7.appsync-api.eu-west-1.avsvmcloud.com"
 
-Many security reasearchers have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
+Many security reasearchers, such as the RedDrip Team and others, have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
 
 1. The full internal domain names of infected victim organizations, such as “victim.com”
 2. The unique ID of infected host within the victim organizations
@@ -49,5 +49,6 @@ Happy hunting!
 ## Acknowledgments
 
 https://www.netresec.com/?page=Blog&month=2020-12&post=Reassembling-Victim-Domain-Fragments-from-SUNBURST-DNS<br/>
-https://github.com/asuna-amawaka/SUNBURST-Analysis
+https://github.com/asuna-amawaka/SUNBURST-Analysis<br/>
+https://github.com/RedDrip7/SunBurst_DGA_Decode
 
