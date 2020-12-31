@@ -1,10 +1,10 @@
 # ## About
 
-# Sunburst victime host sent DNS query to resolve known C2 servers, such as the one below:
+# Sunburst victime host sent DNS query to known C2 servers, such as the one below:
 
 # 	"05q2sp0v4b5ramdf71l7.appsync-api.eu-west-1.avsvmcloud.com"
 
-# Many security reasearchers, such as the RedDrip Team and others, have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
+# Many security reasearchers have been able to decode the first part of the DGA strings, such as "05q2sp0v4b5ramdf71l7". The decoded information contains 2 parts:
 
 # 1. The full internal domain names of infected victim organizations, such as “victim.com”
 # 2. The unique ID of infected host within the victim organizations
@@ -42,31 +42,13 @@
 import hashlib
 import sys
 
-def input_string(inputfile):
+def concat_string(MAC,Domain,GUID):
     """
-    Create a intermediate list of 2-item lists, whose 1st item is host name
-    and the 2nd item is concatenation of 3 parts.
+    Create a string as concatenation of 3 parts.
 
     """
-    results=[]
-
-    with open(inputfile,'r') as f:
-        for line in f:
-            # temp list to hold host and concatenation of 3 parts.
-            temp=[]
-            fields=line.split(',')
-            Host=fields[0].strip()
-			# append host name as the 1st item
-            temp.append(Host)
-            MAC=fields[1].replace('-','').strip()
-            Domain=fields[2].strip()
-            GUID=fields[3].strip()
-			# append concatenation of 3 parts as the 2nd item
-            temp.append(MAC+Domain+GUID)
-			# append every host to the master list
-            results.append(temp)
-
-    return results
+    concat_string = MAC.replace('-','').strip()+Domain.strip()+GUID.strip()
+    return concat_string
 
 def string_md5(str):
     m= hashlib.md5()
@@ -83,25 +65,28 @@ def xor_calc(md5):
     return a1.hex()
 
 def main():
-    parsed_string=input_string(sys.argv[1])
     host_UID_list=[]
-    for item in parsed_string:
-        temp=[]
-        host=item[0]
-        temp.append(host)
-        temp.append(item[1])
-        md5value=string_md5(item[1])
-        xored= xor_calc(md5value)
-        temp.append(md5value)
-        temp.append(xored)
-        host_UID_list.append(temp)
-
-    with open(sys.argv[2],'r') as f:
-        for id in f:
-            for host in host_UID_list:
-                if id.strip().upper() == host[3].upper():
-                    print('--------------Match found!!!----------')
-                    print(host)
+    with open(sys.argv[1],'r') as f1:
+        for line in f1:
+            temp=[]
+            fields=line.split(',')
+            host=fields[0]
+            input_string=concat_string(fields[1],fields[2],fields[3])
+            md5value=string_md5(input_string)
+            xored= xor_calc(md5value)
+            with open(sys.argv[2],'r') as f2:
+                for id in f2:
+                    if id.strip().upper() == xored.strip().upper():
+                        temp.append(host)
+                        temp.append(input_string)
+                        temp.append(md5value)
+                        temp.append(xored)
+                        host_UID_list.append(temp)
+    if len(host_UID_list) > 0:
+        for i in host_UID_list:
+            print(i)
+    else:
+        print('Process finished, nothing found.')
 
 if __name__ == '__main__':
     main()
