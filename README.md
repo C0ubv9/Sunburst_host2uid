@@ -13,7 +13,7 @@ Many security reasearchers have been able to decode the first part of the DGA st
 1. The full internal domain names of infected victim organizations, such as “victim.com”
 2. The unique ID of infected host within the victim organizations
 
-During investigation, victim organizations might have difficulties to identify which exact host sent those queries among possibly affected servers due to many reasons.
+During investigation, victim organizations might have difficulties to identify which exact host sent those queries among many possibly affected servers due to many reasons.
 
 As long as DFIR analysts have those DNS queries, they can run many other available tools in the reference links in the "Acknowledgments" section to decode UID for possible victim host.
 Then analysts can collect 3 pieces of information for each affected servers and then run the script to identify which exact host sent which DNS query in question, hopefully facilitate the investigation.
