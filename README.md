@@ -23,7 +23,7 @@ This script takes 2 input files in the order below and print any matching host n
 1. host_info_file - a csv file with all suppected hosts information, which contains 4 fields in the order below, one host per line.
     1) Host name:<br/>
 		example: "computername"
-	  2) The 1st or default operational network interface's MAC address as the format below:
+	  2) The 1st or default operational network interface's MAC address as the format below:<br/>
 		example: "00-01-02-AA-BB-CC"
     3) Computer domain name:<br/>
 		example: "domain.com"
