@@ -29,7 +29,7 @@ This script takes 2 input files in the order below and print any matching host n
 		example: "domain.com"
     4) UUID created by Windows from registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography"
 		example: "10d6a2c0-4857-42c9-b862-35c7547f945e"
-	Example of one line: "computername,00-01-02-AA-BB-CC,domain.com,10d6a2c0-4857-42c9-b862-35c7547f945e"
+Example of one line: "computername,00-01-02-AA-BB-CC,domain.com,10d6a2c0-4857-42c9-b862-35c7547f945e"
 
 2. UID_file - a csv file with UID decoded from subdomain strings, one UID per line:
 		example: "F5D6AA262381B084"
