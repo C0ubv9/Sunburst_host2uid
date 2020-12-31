@@ -1,4 +1,4 @@
-# Sunbusrt_host2uid
+# Sunburst_host2uid
 
 Python script to match Sunburst victim host to unique ID decoded from c2 DNS query.
 
