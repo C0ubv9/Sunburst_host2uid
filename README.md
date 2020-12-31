@@ -4,7 +4,7 @@ Python script to match Sunburst victim host to unique ID decoded from c2 DNS que
 
 ## About
 
-Sunburst victime host sent DNS query to known C2 servers, such as the one below:
+Sunburst victime host sent DNS query to resolve known C2 servers, such as the one below:
 
 	"05q2sp0v4b5ramdf71l7.appsync-api.eu-west-1.avsvmcloud.com"
 
