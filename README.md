@@ -21,17 +21,17 @@ Then analysts can collect 3 pieces of information for each affected servers and 
 This script takes 2 input files in the order below and print any matching host name if found.
 
 1. host_info_file - a csv file with all suppected hosts information, which contains 4 fields in the order below, one host per line.
-    1) Host name:
+    1) Host name:<br/>
 		example: "computername"
 	  2) The 1st or default operational network interface's MAC address as the format below:
 		example: "00-01-02-AA-BB-CC"
-    3) Computer domain name:
+    3) Computer domain name:<br/>
 		example: "domain.com"
-    4) UUID created by Windows from registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography"
+    4) UUID created by Windows from registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography"<br/>
 		example: "10d6a2c0-4857-42c9-b862-35c7547f945e".<br/>
 		Example of one line: "computername,00-01-02-AA-BB-CC,domain.com,10d6a2c0-4857-42c9-b862-35c7547f945e"
 
-2. UID_file - a csv file with UID decoded from subdomain strings, one UID per line:
+2. UID_file - a csv file with UID decoded from subdomain strings, one UID per line:<br/>
 		example: "F5D6AA262381B084"
 
 ## Usage
