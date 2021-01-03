@@ -36,10 +36,10 @@ This script takes 2 input files in the order below and print any matching host n
 
 ## Usage
    
-1. Collect MAC address, domain name and Windows registry vule as described above to make the host_info_file.
-2. Use any tool(SunburstDomainDecoder.exe or decode_dga.py) referenced in the  "Acknowledgments" section to make the UID_file.
+1. Collect MAC address, domain name and Windows registry vule as described above to make the host_info_file(to be passed as -s argument).
+2. Use any tool(SunburstDomainDecoder.exe or decode_dga.py) referenced in the  "Acknowledgments" section to make the UID_file(to be passed as -u argument)
 3. Run command below in Windows with Python 3:<br/>
-	py -3 "pathtoscript\Sunburst_host2uid.py" "pathtoinputfile\host_info_file.csv" "pathtoinputfile\UID_file.csv"
+	py -3 "pathtoscript\Sunburst_host2uid.py" -s "pathtoinputfile\host_info_file.csv" -u "pathtoinputfile\UID_file.csv"
 
 4. The script will print out host name, concatented strings, md5 hash and UID if matches were found.
 
