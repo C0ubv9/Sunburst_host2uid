@@ -27,20 +27,25 @@
 # 		example: "10d6a2c0-4857-42c9-b862-35c7547f945e"
 # 	Example of one line: "computername,00-01-02-AA-BB-CC,domain.com,10d6a2c0-4857-42c9-b862-35c7547f945e"
 
-# 2. UID_file - a csv file with UID decoded from subdomain strings, one UID per line:
+# 2. UID_file - a file with UIDs decoded from subdomain strings, one UID per line:
 # 		example: "F5D6AA262381B084"
 
 # ## Usage
    
-# 1. Collect MAC address, domain name and Windows registry vule as described above to make the host_info_file.
-# 2. Use any tool(SunburstDomainDecoder.exe or decode_dga.py) referenced in the  "Acknowledgments" section to make the UID_file.
+# 1. Collect MAC address, domain name and Windows registry vule as described above to make the host_info_file(to be passed as -s argument).
+# 2. Use any tool(SunburstDomainDecoder.exe or decode_dga.py) referenced in the  "Acknowledgments" section to make the UID_file(to be passed as -u argument).
 # 3. Run command below in Windows with Python 3:
-# 	py -3 "pathtoscript\Sunburst_host2uid.py" "pathtoinputfile\host_info_file.csv" "pathtoinputfile\UID_file.csv"
+# 	py -3 "pathtoscript\Sunburst_host2uid.py" -s "pathtoinputfile\host_info_file.csv" -u "pathtoinputfile\UID_file.csv"
 
 # 4. The script will print out host name, concatented strings, md5 hash and UID if matches were found.
 
 import hashlib
-import sys
+import argparse
+
+parser=argparse.ArgumentParser(description='A script to match source Sunburst victim host to particular DNS query.')
+parser.add_argument('-s','--source',dest='source',help='The input file contains source hosts information',required=True)
+parser.add_argument('-u','--uid',dest='uid',help='The input file contains UIDs decoded from DNS queries',required=True)
+args=parser.parse_args()
 
 def concat_string(MAC,Domain,GUID):
     """
@@ -66,7 +71,7 @@ def xor_calc(md5):
 
 def main():
     host_UID_list=[]
-    with open(sys.argv[1],'r') as f1:
+    with open(args.source,'r') as f1:
         for line in f1:
             temp=[]
             fields=line.split(',')
@@ -74,7 +79,7 @@ def main():
             input_string=concat_string(fields[1],fields[2],fields[3])
             md5value=string_md5(input_string)
             xored= xor_calc(md5value)
-            with open(sys.argv[2],'r') as f2:
+            with open(args.uid,'r') as f2:
                 for id in f2:
                     if id.strip().upper() == xored.strip().upper():
                         temp.append(host)
